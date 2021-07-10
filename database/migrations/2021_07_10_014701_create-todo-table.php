@@ -21,7 +21,7 @@ class CreateTodoTable extends Migration
             $table->integer('priority');
             $table->timestamps();
             $table->softDeletes();
-        })
+        });
     }
 
     /**
@@ -31,6 +31,6 @@ class CreateTodoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('todos')
+        Schema::drop('todos');
     }
 }
