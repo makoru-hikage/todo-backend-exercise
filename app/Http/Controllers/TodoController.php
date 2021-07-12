@@ -12,7 +12,7 @@ class TodoController extends Controller
      * @param int $id
      * @return Response
      */
-    public function showById($id){
+    public function show($id){
         return Todo::findOrFail($id);
     }
 
