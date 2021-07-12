@@ -13,7 +13,13 @@ class TodoController extends Controller
      * @return Response
      */
     public function show($id){
-        return Todo::findOrFail($id);
+        $content = Todo::find($id);
+
+        if ($content) {
+            return response()->json($content, 200);
+        }
+
+        return response()->json($content, 404);
     }
 
     /**
@@ -22,7 +28,10 @@ class TodoController extends Controller
      * @return Response
      */
     public function all(){
-        return Todo::where('deleted_at', null)->get();
+        $content = Todo::where('deleted_at', null)->get()->toJson();
+        $status = 200;
+
+        return response()->json($content, $status);
     }
 
     /**
@@ -36,6 +45,8 @@ class TodoController extends Controller
 
         $todo->fill($request->all());
         $todo->save();
+        $status = 201;
+        return response()->json(null, $status);
     }
 
     /**
@@ -48,6 +59,8 @@ class TodoController extends Controller
         $todo = Todo::findOrFail($id);
         $todo->fill($request->all());
         $todo->save();
+        $status = 201;
+        return response()->json(null, $status);
     }
 
     /**
@@ -57,7 +70,14 @@ class TodoController extends Controller
      * @return Response
      */
     public function destroy($id) {
-        Todo::destroy($id);
+
+        $numberOfDeletedItems = Todo::destroy($id);
+
+        if ($numberOfDeletedItems > 0) {
+            return response()->json(null, 201);
+        }
+
+        return response()->json(null, 404);
     }
 
 }
