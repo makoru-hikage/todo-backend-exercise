@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\TodoController
+use App\Http\Controllers\TodoController;
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
