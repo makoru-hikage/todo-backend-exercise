@@ -19,8 +19,8 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/todos',[TodoController::class, 'show']);
-$router->get('/todos/{id}',[TodoController::class, 'all']);
-$router->post('/todos',[TodoController::class, 'store']);
-$router->patch('/todos/{id}',[TodoController::class, 'update']);
-$router->delete('/todos/{id}',[TodoController::class, 'destroy']);
+$router->get('/todos','TodoController@all');
+$router->get('/todos/{id}','TodoController@show');
+$router->post('/todos','TodoController@store');
+$router->patch('/todos/{id}','TodoController@update');
+$router->delete('/todos/{id}','TodoController@destroy');
