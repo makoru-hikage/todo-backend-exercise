@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\TodoController
+
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -16,3 +18,9 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/todos',[TodoController::class, 'show']);
+$router->get('/todos/{id}',[TodoController::class, 'all']);
+$router->post('/todos',[TodoController::class, 'store']);
+$router->patch('/todos/{id}',[TodoController::class, 'update']);
+$router->delete('/todos/{id}',[TodoController::class, 'destroy']);
